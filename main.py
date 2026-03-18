@@ -3,6 +3,8 @@ from auth import autenticar
 
 st.set_page_config(page_title="Barraca Latinos", page_icon="🏖️", layout="centered")
 
+# Verifica se a variável "logado" ainda não existe no session_state (primeiro acesso do usuário).
+# Se não existir, inicializa como False (usuário não está logado).
 if "logado" not in st.session_state:
     st.session_state.logado = False
 
@@ -12,7 +14,7 @@ if not st.session_state.logado:
     col1, col2, col3 = st.columns([1,3,1])
 
     with col2:
-        st.image("sistema_barraca_de_praia/img/logo.png", width=350)
+        st.image("img\logo.png", width=350)
     col1, col2, col3 = st.columns([1,2,1])
 
     with col2:
@@ -39,12 +41,12 @@ else:
     # navegação
     if st.session_state.tipo == "gerente":
         pg = st.navigation([
-            st.Page("pages/gerente_menu.py", title="Gerente")
+            st.Page("pages/gerente/gerente_menu.py", title="Gerente")
         ])
 
     elif st.session_state.tipo == "funcionario":
         pg = st.navigation([
-            st.Page("pages/app_funcionario_pedido.py", title="Pedidos")
+            st.Page("pages/funcionario/funcionario_pedido.py", title="Pedidos")
         ])
 
     else:
